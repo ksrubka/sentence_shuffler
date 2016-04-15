@@ -8,11 +8,6 @@ import java.util.StringTokenizer;
 public class SentenceShuffler {
 
     String sentence;
-
-    public String getShuffledSentence() {
-        return shuffledSentence;
-    }
-
     String shuffledSentence;
 
     public SentenceShuffler(String sentence) {
@@ -20,12 +15,22 @@ public class SentenceShuffler {
         this.shuffledSentence = shuffle();
     }
 
+    public void testStringTokenizer(){
+        StringTokenizer pieces = cutIntoPieces();
+
+        while (pieces.hasMoreElements()){
+            String word = (String) pieces.nextElement();
+            System.out.println(word + "\n");
+        }
+    }
+
     public String shuffle(){
         StringBuilder newSentence = new StringBuilder();
         StringTokenizer pieces = cutIntoPieces();
 
         while (pieces.hasMoreElements()){
-            String word = (String) pieces.nextElement();
+            String word = pieces.nextToken();
+
             if (word.length() > 4){
                 newSentence.append(shuffleOneWord(word));
             }
@@ -38,12 +43,11 @@ public class SentenceShuffler {
     }
 
     private StringTokenizer cutIntoPieces(){
-        return new StringTokenizer(sentence, ",./?;:\"\'()\\!");
+        return new StringTokenizer(sentence, " ,./?;:\"\'()\\!");
     }
 
     private String shuffleOneWord(String word) {
         StringBuilder shuffledWord = new StringBuilder();
-        List<Character> shuffled = new ArrayList<>();
 
         char[] wordCut = word.toCharArray();
         List<Character> chars = new ArrayList<>();
@@ -52,37 +56,39 @@ public class SentenceShuffler {
             chars.add(character);
         }
         List<Integer> randomIndexes = generateRandomIndexes(chars);
+        char[] shuffled = new char[chars.size()];
 
-        int start = 0;
-        for (char character : chars) {
-            if (chars.indexOf(character) > 0 || chars.indexOf(character) < (chars.size() - 1)) {
-                shuffled.add(randomIndexes.get(start), character);
-                start++;
-            } else {
-                shuffled.add(character);
-                start++;
-            }
+
+        shuffled[0] = chars.get(0);
+
+        for (int index = 1; index < chars.size() -1; index++) {
+            int randomIndex = randomIndexes.get(index-1);
+            shuffled[randomIndex] = chars.get(index);
         }
+        shuffled[chars.size()-1] = chars.get(chars.size()-1);
 
         for (char character : shuffled){
-            shuffledWord.append(character);
+            if (!(character == '\u0000')){
+                shuffledWord.append(character);
+            }
         }
         return shuffledWord.toString();
     }
 
-    private List<Integer> generateRandomIndexes(List<Character> chars) {
+    public static List<Integer> generateRandomIndexes(List<Character> chars) {
         List<Integer> randomIndexes = new ArrayList<>();
         while (randomIndexes.size() != chars.size() - 2){
             for (int index = 1; index < chars.size() - 1; index++){
                 int randomIndex = (int) Math.round(Math.random() * (chars.size() - 2));
-                if (!randomIndexes.contains(randomIndex)){
+                if (!randomIndexes.contains(randomIndex) && randomIndex != 0 && randomIndex != chars.size() - 1 ){
                     randomIndexes.add(randomIndex);
-                }
-                else {
-                    continue;
                 }
             }
         }
         return randomIndexes;
+    }
+
+    public String getShuffledSentence() {
+        return shuffledSentence;
     }
 }
