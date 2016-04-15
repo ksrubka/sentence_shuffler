@@ -15,10 +15,14 @@ public class SentenceShufflerTestApp {
                 "for doing anything less than Your best");
 
         SentenceShuffler zdanie3 = new SentenceShuffler("Tworzenie struktury kodu pod kątem łatwości " +
-                "testowania prowadzi do otrzymania lepszego projektu kodu.");
+                "testowania prowadzi do otrzymania lepszego projektu kodu");
+
+        SentenceShuffler zdanie4 = new SentenceShuffler("Nie zmuszajcie mnie więcej do pracy nad tym " +
+                "kodem został napisany przez socjopatę idiotę lub geniusza zła. mogłem to byc ja");
 
         System.out.println(zdanie1.getShuffledSentence()+ "\n");
         System.out.println(zdanie2.getShuffledSentence() + "\n");
-        System.out.println(zdanie3.getShuffledSentence());
+        System.out.println(zdanie3.getShuffledSentence() + "\n");
+        System.out.println(zdanie4.getShuffledSentence());
     }
 }
