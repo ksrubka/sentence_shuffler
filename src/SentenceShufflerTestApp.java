@@ -18,7 +18,7 @@ public class SentenceShufflerTestApp {
                 "testowania prowadzi do otrzymania lepszego projektu kodu");
 
         SentenceShuffler zdanie4 = new SentenceShuffler("Nie zmuszajcie mnie więcej do pracy nad tym " +
-                "kodem został napisany przez socjopatę idiotę lub geniusza zła. mogłem to byc ja");
+                "kodem\n Został napisany przez socjopatę idiotę lub geniusza zła.\n Mogłem to byc ja");
 
         System.out.println(zdanie1.getShuffledSentence()+ "\n");
         System.out.println(zdanie2.getShuffledSentence() + "\n");
