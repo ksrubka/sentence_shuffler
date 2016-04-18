@@ -68,9 +68,7 @@ public class SentenceShuffler {
         shuffled[chars.size()-1] = chars.get(chars.size()-1);
 
         for (char character : shuffled){
-            if (!(character == '\u0000')){
-                shuffledWord.append(character);
-            }
+            shuffledWord.append(character);
         }
         return shuffledWord.toString();
     }
