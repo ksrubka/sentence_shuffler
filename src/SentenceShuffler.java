@@ -15,15 +15,6 @@ public class SentenceShuffler {
         this.shuffledSentence = shuffle();
     }
 
-    public void testStringTokenizer(){
-        StringTokenizer pieces = cutIntoPieces();
-
-        while (pieces.hasMoreElements()){
-            String word = (String) pieces.nextElement();
-            System.out.println(word + "\n");
-        }
-    }
-
     public String shuffle(){
         StringBuilder newSentence = new StringBuilder();
         StringTokenizer pieces = cutIntoPieces();
@@ -58,9 +49,7 @@ public class SentenceShuffler {
         List<Integer> randomIndexes = generateRandomIndexes(chars);
         char[] shuffled = new char[chars.size()];
 
-
         shuffled[0] = chars.get(0);
-
         for (int index = 1; index < chars.size() -1; index++) {
             int randomIndex = randomIndexes.get(index-1);
             shuffled[randomIndex] = chars.get(index);
