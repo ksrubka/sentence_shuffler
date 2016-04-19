@@ -21,13 +21,10 @@ public class SentenceShuffler {
 
         while (pieces.hasMoreElements()){
             String word = pieces.nextToken();
-
-            if (word.length() > 4){
+            if (word.length() > 4)
                 newSentence.append(shuffleOneWord(word));
-            }
-            else {
+            else
                 newSentence.append(word);
-            }
             newSentence.append(" ");
         }
         return newSentence.toString();
@@ -43,9 +40,9 @@ public class SentenceShuffler {
         char[] wordCut = word.toCharArray();
         List<Character> chars = new ArrayList<>();
 
-        for (char character : wordCut) {
+        for (char character : wordCut)
             chars.add(character);
-        }
+
         List<Integer> randomIndexes = generateRandomIndexes(chars);
         char[] shuffled = new char[chars.size()];
 
@@ -56,9 +53,9 @@ public class SentenceShuffler {
         }
         shuffled[chars.size()-1] = chars.get(chars.size()-1);
 
-        for (char character : shuffled){
+        for (char character : shuffled)
             shuffledWord.append(character);
-        }
+
         return shuffledWord.toString();
     }
 
@@ -67,9 +64,8 @@ public class SentenceShuffler {
         while (randomIndexes.size() != chars.size() - 2){
             for (int index = 1; index < chars.size() - 1; index++){
                 int randomIndex = (int) Math.round(Math.random() * (chars.size() - 2));
-                if (!randomIndexes.contains(randomIndex) && randomIndex != 0 && randomIndex != chars.size() - 1 ){
+                if (!randomIndexes.contains(randomIndex) && randomIndex != 0 && randomIndex != chars.size() - 1 )
                     randomIndexes.add(randomIndex);
-                }
             }
         }
         return randomIndexes;
