@@ -18,7 +18,6 @@ public class SentenceShuffler {
     public String shuffle(){
         StringBuilder newSentence = new StringBuilder();
         StringTokenizer pieces = cutIntoPieces();
-
         while (pieces.hasMoreElements()){
             String word = pieces.nextToken();
             if (word.length() > 4)
@@ -36,13 +35,10 @@ public class SentenceShuffler {
 
     private String shuffleOneWord(String word) {
         StringBuilder shuffledWord = new StringBuilder();
-
         char[] wordCut = word.toCharArray();
         List<Character> chars = new ArrayList<>();
-
         for (char character : wordCut)
             chars.add(character);
-
         List<Integer> randomIndexes = generateRandomIndexes(chars);
         char[] shuffled = new char[chars.size()];
 
@@ -52,10 +48,8 @@ public class SentenceShuffler {
             shuffled[randomIndex] = chars.get(index);
         }
         shuffled[chars.size()-1] = chars.get(chars.size()-1);
-
         for (char character : shuffled)
             shuffledWord.append(character);
-
         return shuffledWord.toString();
     }
 
